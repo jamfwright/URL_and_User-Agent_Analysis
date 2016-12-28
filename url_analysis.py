@@ -23,6 +23,7 @@ count_number_of_agents = 0
 # Define the main window
 
 interface = Tk()
+interface.title("URL User-Agent Analyzer")
 interface.geometry('800x600')
 # These lines may not be needed
 Grid.rowconfigure(interface, 6, weight=1)
@@ -95,7 +96,7 @@ def starttest():
             output.update_idletasks()
 
         if r1 is False:
-            output.insert(END,"\n[!] The baseline did not have a valid response, exiting...")
+            output.insert(END,"\nResult: The baseline did not have a valid response, exiting...")
             output.insert(END,"\n[i] Usually this means a timeout was reached or just no response at all.\n\n")
             output.insert(END,"[i] Close the window to exit.")
             output.update_idletasks()
@@ -117,31 +118,31 @@ def starttest():
                     # print(r2.text + "\n---------------------------------------------")
                 except requests.exceptions.ConnectionError:
                     count_no_response += 1
-                    output.insert(END, "[!] Time-Out on this one \n--------------------------------------------- \n\n")
+                    output.insert(END, "\nResult: Time-Out on this one \n--------------------------------------------- \n\n")
                     output.update_idletasks()
                     output.see("end")
                     continue
                 except requests.exceptions.ReadTimeout:
                     count_no_response += 1
-                    output.insert(END,"[!] Time-Out on this one \n--------------------------------------------- \n\n")
+                    output.insert(END,"\nResult: Time-Out on this one \n--------------------------------------------- \n\n")
                     output.update_idletasks()
                     output.see("end")
                     continue
 
                 if r2 == False:
-                    output.insert(END,"[i] No response on this one, moving on... \n--------------------------------------------- \n\n")
+                    output.insert(END,"\nResult: No response on this one, moving on... \n--------------------------------------------- \n\n")
                     output.update_idletasks()
                     output.see("end")
                     count_no_response += 1
                     break
                 elif r1.text == r2.text:
-                    output.insert(END,"[i] This matches the baseline, moving on.... \n--------------------------------------------- \n\n")
+                    output.insert(END,"\nResult: This matches the baseline, moving on.... \n--------------------------------------------- \n\n")
                     output.update_idletasks()
                     output.see("end")
                     count_matches += 1
                 else:
                     count_different_result += 1
-                    newresult = "[*] This response is different from the baseline (Difference " + str(count_different_result) + "):  \n\n --------------------------------------------- \n" + r2.text + "\n--------------------------------------------- \n\n"
+                    newresult = "\nResult: This response is different from the baseline (Difference " + str(count_different_result) + "):  \n\n --------------------------------------------- \n" + r2.text + "\n--------------------------------------------- \n\n"
                     output.insert(END, newresult)
                     output.update_idletasks()
                     output.see("end")
@@ -163,7 +164,6 @@ def starttest():
 
 
 enter_url = Entry(interface)
-#enter_url.pack(side=TOP)
 enter_url.grid(row=0, column=1, sticky=S+E+W, padx=200)
 button2 = Button(interface, text="Set URL", command = seturl)
 button2.grid(row=1, column=1)
@@ -177,7 +177,6 @@ button3.grid(row=4, column=1, sticky=E+W)
 
 output = Text(master=interface)
 
-#output.pack(side=BOTTOM, expand=YES, fill=BOTH)
 output.columnconfigure(1, weight=2, pad=20)
 output.rowconfigure(6, weight=3, pad=20)
 output.grid(row=6, column=1, sticky=N+S+E+W)
@@ -186,5 +185,6 @@ scrollbar.grid(row=6, column=2, sticky=N+S)
 output.config(yscrollcommand=scrollbar.set)
 scrollbar.config(command=output.yview)
 
+interface.title("Test")
 interface.mainloop()
 
