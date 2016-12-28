@@ -10,4 +10,4 @@ recorded and shown.
 For determining risk, it is best to use the user-agent strings that relate to your environment.  If you have an all Linux shop, you
 probably don't need to test Windows based user-agent strings, for example.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/jamfwright/URL_and_User-Agent_Analysis/blob/master/URL%20User-Agent%20Analyzer.png "Sample of Usage")
