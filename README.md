@@ -11,6 +11,6 @@ For determining risk, it is best to use the user-agent strings that relate to yo
 probably don't need to test Windows based user-agent strings, for example.
 
 
-
+----
 
 ![alt text](https://github.com/jamfwright/URL_and_User-Agent_Analysis/blob/master/URL%20User-Agent%20Analyzer.png "Sample of Usage")
